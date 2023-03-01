@@ -18,7 +18,7 @@ pipeline {
         }
     stage('deploy to tomact server') {
             steps {
-deploy adapters: [tomcat8(credentialsId: 'git_hub', path: '', url: 'https://tomcat.apache.org/download-80.cgi')], contextPath: null, war: '**/*.war'
+deploy adapters: [tomcat8(credentialsId: 'git_hub', path: '', url: 'https://downloads.apache.org/tomcat/tomcat-8/v8.5.86/bin/apache-tomcat-8.5.86.tar.gz.asc')], contextPath: null, war: '**/*.war'
           }
         }
     }
