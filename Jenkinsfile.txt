@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                 sh 'mvn clean package'
+               
+            }
+            post{
+                      success{
+                         echo 'Archiving the artifacts'
+                          archiveArtifacts artifacts '**/target/*.war'
+}
+}
+        }
+    stage('deploy to tomact server') {
+            steps {
+deploy adapters: [tomcat8(credentialsId: 'git_hub', path: '', url: 'https://tomcat.apache.org/download-80.cgi')], contextPath: null, war: '**/*.war'
+          }
+        }
+    }
+}
+
+
+
+
+
+
+
